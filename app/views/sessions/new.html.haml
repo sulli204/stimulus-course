@@ -1,0 +1,10 @@
+%h1 Login
+= form_with() do |f|
+  %div
+    = f.label :email
+    = f.text_field :email, required: true
+  %div
+    = f.label :password
+    = f.password_field :password, required: true
+  %div
+    = f.submit "Login"

@@ -1,0 +1,12 @@
+%p{:style => "color: green"}= notice
+%h1 Books
+
+= form_with(url: books_path, method: :get, data: { controller: "search-form", turbo_frame: "books" }) do |f|
+  = f.label :query, "Search for Books by Title"
+  = f.text_field :query, data:{ action: "input->search-form#search" }, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-orange-100 focus:shadow-none focus:border-orange-500 focus:outline-none"
+  = f.submit "Submit"
+
+%div
+  = render "books", books: @books
+
+= link_to "New book", new_book_path

@@ -1,0 +1,7 @@
+%h1 Public Library Terminal
+- if logged_in?
+  %h2= "Welcome #{current_user.name}"
+  - if current_user.patron?
+    %p Checkout Books
+
+  = link_to "Search Books", books_path
