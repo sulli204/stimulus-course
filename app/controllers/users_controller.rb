@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    session[:used_id] = @user.id
+    session[:user_id] = @user.id
     redirect_to welcome_path
   end
 
