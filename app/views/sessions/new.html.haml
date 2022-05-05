@@ -1,10 +1,10 @@
-%h1 Login
-= form_with() do |f|
+%span.text-xl.font-semibold Login
+= form_with(class: "space-y-3") do |f|
   %div
-    = f.label :email
+    = f.label :email, style: "display: block"
     = f.text_field :email, required: true
   %div
-    = f.label :password
+    = f.label :password, style: "display: block"
     = f.password_field :password, required: true
   %div
     = f.submit "Login", class: "bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-3 rounded-full"

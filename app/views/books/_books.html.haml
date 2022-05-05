@@ -1,2 +1,8 @@
 = turbo_frame_tag "books" do
-  = render books
+  %table.table-auto
+    %thead
+      %tr
+        %th.text-left Title
+        %th.text-left Author
+    %tbody
+      = render books

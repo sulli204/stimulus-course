@@ -1,23 +1,23 @@
 %p{:style => "color: green"}= notice
 %h1.text-lg.py-8 Search for Books
+%div.space-y-4
+  %div.w-full.max-w-xs{data: { controller: "toggle", "toggle-active-class": "bg-blue-400 text-white rounded-full", "toggle-hide-class": "hidden"}}
+    = form_with(url: books_path, method: :get, class: "bg-white shadow-lg rounded px-8 pt-6 pb-6 mb-4", data: { controller: "search-form", turbo_frame: "books" }) do |f|
+      %div.mb-4.space-y-3
+        %span.mr-16.bg-blue-400.text-white.py-1.px-3.rounded-full{data: { action: "click->toggle#toggle", "toggle-target": "pill", "toggle-search-param": "title" }} Title
+        %span.py-1.px-3{data: { action: "click->toggle#toggle", "toggle-target": "pill" }} Author
 
-%div.w-full.max-w-xs{data: { controller: "toggle", "toggle-active-class": "bg-blue-400 text-white rounded-full", "toggle-hide-class": "hidden"}}
-  = form_with(url: books_path, method: :get, class: "bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4", data: { controller: "search-form", turbo_frame: "books" }) do |f|
-    %div.mb-4.space-y-3
-      %span.mr-16.bg-blue-400.text-white.py-1.px-3.rounded-full{data: { action: "click->toggle#toggle", "toggle-target": "pill", "toggle-search-param": "title" }} Title
-      %span.py-1.px-3{data: { action: "click->toggle#toggle", "toggle-target": "pill" }} Author
+        %div.space-y-3{data: { toggle_target: "title" }}
+          = f.label :title, "Search by Title", class: "block text-gray-500 text-sm font-bold mb-2"
+          = f.text_field :title, data:{ action: "input->search-form#search" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-500 leading-tight focus:outline-none focus:shadow-outline"
+          = f.submit "Submit", class: "bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-3 rounded-full"
 
-      %div.space-y-3{data: { toggle_target: "title" }}
-        = f.label :title, "Search by Title", class: "block text-gray-500 text-sm font-bold mb-2"
-        = f.text_field :title, data:{ action: "input->search-form#search" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-500 leading-tight focus:outline-none focus:shadow-outline"
-        = f.submit "Submit", class: "bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-3 rounded-full"
+        %div.hidden.space-y-3{data: { toggle_target: "author" }}
+          = f.label :author, "Search by Author", class: "block text-gray-500 text-sm font-bold mb-2"
+          = f.text_field :author, data:{ action: "input->search-form#search" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-500 leading-tight focus:outline-none focus:shadow-outline"
+          = f.submit "Submit", class: "bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-3 rounded-full"
 
-      %div.hidden.space-y-3{data: { toggle_target: "author" }}
-        = f.label :author, "Search by Author", class: "block text-gray-500 text-sm font-bold mb-2"
-        = f.text_field :author, data:{ action: "input->search-form#search" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-500 leading-tight focus:outline-none focus:shadow-outline"
-        = f.submit "Submit", class: "bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-3 rounded-full"
-
-%div
-  = render "books", books: @books
-
-= link_to "New book", new_book_path
+  %div
+    = render "books", books: @books
+  %div
+    = link_to "New book", new_book_path, class: "bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-full"
