@@ -1,10 +1,10 @@
-%nav
-  %ul
-  - if logged_in?
-    %li
-      = button_to "Logout", logout_path, method: :post
-  - else
-    %li
-      = link_to "Login", login_path
-    %li
-      = link_to "Sign Up", signup_path
+%nav.flex.items-center.justify-between.flex-wrap.bg-blue-400.p-6
+  %div.flex.items-center.flex-shrink-0.text-white.mr-6
+    = link_to "Public Library", welcome_path, class: "span font-semibold text-xl tracking-tight"
+  %div.w-full.block.flex-grow.lg-flex.lg:items-center.lg:w-auto
+    %div.text-sm.lg:flex-grow
+      - if logged_in?
+        = button_to "Logout", logout_path, method: :post, class: "block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+      - else
+        = link_to "Login", login_path, class: "block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+        = link_to "Sign Up", signup_path, class: "block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"

@@ -1,10 +1,14 @@
 %p{:style => "color: green"}= notice
-%h1 Books
+%h1.text-lg.py-8 Search for Books
 
-= form_with(url: books_path, method: :get, data: { controller: "search-form", turbo_frame: "books" }) do |f|
-  = f.label :query, "Search for Books by Title"
-  = f.text_field :query, data:{ action: "input->search-form#search" }, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-orange-100 focus:shadow-none focus:border-orange-500 focus:outline-none"
-  = f.submit "Submit"
+%div.w-full.max-w-xs
+  = form_with(url: books_path, method: :get, class: "bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4", data: { controller: "search-form", turbo_frame: "books" }) do |f|
+    %div.mb-4.space-y-3
+      %span.mr-16 Title
+      %span Author
+      = f.label :query, "Search by Title", class: "block text-gray-500 text-sm font-bold mb-2"
+      = f.text_field :query, data:{ action: "input->search-form#search" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-500 leading-tight focus:outline-none focus:shadow-outline"
+      = f.submit "Submit", class: "bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-3 rounded-full"
 
 %div
   = render "books", books: @books
